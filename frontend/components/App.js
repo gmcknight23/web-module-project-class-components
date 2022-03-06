@@ -21,6 +21,19 @@ export default class App extends React.Component {
     };
   }
 
+  handleAdd = (name) => {
+    const newTodo = {
+      name: name,
+      id: Date.now(),
+      completed: false,
+    };
+
+    this.setState({
+      ...this.state,
+      todos: [...this.state.todos, newTodo],
+    });
+  };
+
   handleClear = () => {
     this.setState({
       ...this.state,
@@ -37,7 +50,7 @@ export default class App extends React.Component {
       <div>
         <h1>TODOS</h1>
         <TodoList todos={todos} />
-        <Form todos={todos} />
+        <Form handleAdd={this.handleAdd} todos={todos} />
         <button onClick={this.handleClear}>Clear</button>
       </div>
     );
